@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     bash
 
 # kubectlをインストール
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm/v7/kubectl" && \
+RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.24.4/bin/linux/arm/kubectl" && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl
 
