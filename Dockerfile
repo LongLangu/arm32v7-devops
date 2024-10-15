@@ -1,5 +1,5 @@
 # ベースイメージとしてalpineを使用
-FROM --platform=linux/arm/v7 alpine:3.18
+FROM --platform=linux/arm/v7 arm32v7/golang:1.23.2-alpine3.20
 
 # 必要なパッケージをインストール
 RUN apk add --no-cache \
@@ -7,6 +7,15 @@ RUN apk add --no-cache \
     openssh-client \
     curl \
     bash
+
+# pressly/gooseをインストール
+RUN git clone https://github.com/pressly/goose && \
+    cd goose && \
+    go mod tidy && \
+    go build -ldflags="-s -w" -tags='no_clickhouse no_libsql no_mssql no_mysql no_sqlite3 no_vertica no_ydb' -o goose ./cmd/goose
+
+# gooseを/go/binに移動    
+RUN mv goose/goose /go/bin
 
 # kubectlをインストール
 RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.24.4/bin/linux/arm/kubectl" && \
