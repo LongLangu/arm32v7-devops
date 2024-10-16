@@ -15,7 +15,7 @@ POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-"your-password"}
 
 # Gooseの環境変数設定
 GOOSE_DRIVER=${GOOSE_DRIVER:-"postgres"}
-GOOSE_DB=${GOOSE_DB:-"host=${POSTGRES_HOST} port=${POSTGRES_PORT} user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB}"}
+GOOSE_DBSTRING=${GOOSE_DBSTRING:-"host=${POSTGRES_HOST} port=${POSTGRES_PORT} user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB}"}
 
 # 初期クローン
 git clone --branch ${BRANCH} ${REPO_URL} src
