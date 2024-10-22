@@ -34,7 +34,7 @@ while true; do
 
         # migrationの実行
         cd migrations
-        goose up
+        goose "${GOOSE_DBSTRING}" up
         cd ..
 
         # deploymentの更新
